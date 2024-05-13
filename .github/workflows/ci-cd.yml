@@ -32,6 +32,4 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }}_${{ github.ref_name }}
-            -Dsonar.projectBaseDir=.
-            #-Dsonar.sources=${{ env.SONAR_SOURCES }}
             -Dsonar.exclusions=${{ env.SONAR_EXCLUSIONS }}
