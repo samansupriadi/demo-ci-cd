@@ -1,19 +1,18 @@
 name: CI AND CD
 
-push:
-  branches:
-    - main
-    - master
-    - develop
-    - 'releases/**'
-    - demo
-pull_request:
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - 'releases/**'
+      - demo
+  pull_request:
     types: [opened, synchronize, reopened]
 
-name: SonarQube Scan
 jobs:
   code-quality:
-    name: SonarQube Trigger
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
