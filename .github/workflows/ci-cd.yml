@@ -1,0 +1,28 @@
+name: CI AND CD
+
+push:
+  branches:
+    - main
+    - master
+    - develop
+    - 'releases/**'
+    - demo
+pull_request:
+    types: [opened, synchronize, reopened]
+
+name: SonarQube Scan
+jobs:
+  code-quality:
+    name: SonarQube Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+    
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
